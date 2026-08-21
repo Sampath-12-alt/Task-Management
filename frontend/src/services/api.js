@@ -1,4 +1,10 @@
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001/api';
+const getApiBaseUrl = () => {
+  const envUrl = import.meta.env.VITE_API_URL || 'https://task-management-gqao.onrender.com';
+  const cleanUrl = envUrl.replace(/\/+$/, '');
+  return cleanUrl.endsWith('/api') ? cleanUrl : `${cleanUrl}/api`;
+};
+
+const API_URL = getApiBaseUrl();
 
 /**
  * Generic fetch wrapper with JSON headers and optional Bearer token
